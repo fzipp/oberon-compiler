@@ -11,6 +11,18 @@ or on real Project Oberon FPGA hardware, of course.
 The source code of the original compiler by Niklaus Wirth can be found on
 the website linked above.
 
+## Installation
+
+```
+$ go install github.com/fzipp/oberon-compiler/cmd/oc@latest
+```
+
+## Usage
+
+```
+$ oc Hello.Mod
+```
+
 ## Motivation
 
 My motivation was the same as
