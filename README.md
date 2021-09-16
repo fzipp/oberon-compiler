@@ -82,4 +82,4 @@ transferring it to the target system.
 ## License
 
 This project is free and open source software licensed under the
-[ISC License](LICENSE).
+[Project Oberon License](LICENSE).
