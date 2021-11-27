@@ -18,10 +18,76 @@ $ go install github.com/fzipp/oberon-compiler/cmd/oc@latest
 ```
 
 ## Usage
+```
+oc [-s] modfile...
+
+Flags:
+    -s  Overwrites existing symbol file on changes.
+```
+
+### Example 1: Compiling the Oberon core modules
+
+Download the source code of the Project Oberon core modules from
+[Wirth's homepage](https://people.inf.ethz.ch/wirth/ProjectOberon/index.html)
+(the *.Mod files  in the  first row).
+
+Compile the inner core modules:
+
+```
+$ oc Kernel.Mod FileDir.Mod Files.Mod Modules.Mod
+```
+
+Compile the outer core modules:
+
+```
+$ oc Input.Mod Display.Mod Viewers.Mod Fonts.Mod Texts.Mod Oberon.Mod MenuViewers.Mod TextFrames.Mod System.Mod Edit.Mod
+```
+
+The compilation result is a RISC object file (.rsc) and a symbol file (.smb)
+for each module.
+
+### Example 2: Hello World
+
+This requires the compiled core modules from the previous example, specifically
+the symbol files `Texts.smb` and `Oberon.smb`, because the example code will
+import these two modules.
+
+Create a source file named `Hello.Mod` containing the following code:
+
+```
+MODULE Hello;
+
+IMPORT Texts, Oberon;
+
+VAR W: Texts.Writer;
+
+PROCEDURE World*;
+BEGIN
+  Texts.WriteString(W, "hello, world");
+  Texts.WriteLn(W);
+  Texts.Append(Oberon.Log, W.buf);
+END World;
+
+BEGIN
+  Texts.OpenWriter(W);
+END Hello.
+```
+
+Compile it with the Oberon compiler `oc`:
 
 ```
 $ oc Hello.Mod
+OR Compiler  8.3.2020; ported to Go
+  compiling Hello new symbol file 33 40 E4DFD669
 ```
+
+This results in two new files:
+
+```
+Hello.rsc Hello.smb
+```
+
+One is the RISC object file (.rsc), and the other is the symbol file (.smb).
 
 ## Motivation
 
