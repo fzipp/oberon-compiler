@@ -82,14 +82,15 @@ const (
 )
 
 // Item forms and meaning of fields:
-//    mode         r      a       b
-//    --------------------------------------
-//    ClassConst   -      value   (proc adr)  (immediate value)
-//    ClassVar     base   off     -           (direct adr)
-//    ClassPar     -      off0    off1        (indirect adr)
-//    classReg     regno
-//    classRegI    regno  off     -
-//    classCond    cond   Fchain  Tchain
+//
+//	mode         r      a       b
+//	--------------------------------------
+//	ClassConst   -      value   (proc adr)  (immediate value)
+//	ClassVar     base   off     -           (direct adr)
+//	ClassPar     -      off0    off1        (indirect adr)
+//	classReg     regno
+//	classRegI    regno  off     -
+//	classCond    cond   Fchain  Tchain
 type Item struct {
 	Mode orb.Class
 	Type *orb.Type
