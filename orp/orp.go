@@ -1724,7 +1724,7 @@ func (p *Parser) module() {
 	}
 }
 
-func (p *Parser) log(a ...interface{}) {
+func (p *Parser) log(a ...any) {
 	_, _ = fmt.Fprint(p.w, a...)
 }
 
