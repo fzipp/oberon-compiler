@@ -662,7 +662,7 @@ func (b *Base) Export(modId ors.Ident, newSF bool) (int32, bool) {
 		obj = obj.Next
 	}
 	padLen := 4 - int(w.Len()%4)
-	for i := 0; i < padLen; i++ {
+	for range padLen {
 		files.Write(w, 0)
 	}
 	for b.ref = FormRecord + 1; b.ref < maxTypTab; b.ref++ {
